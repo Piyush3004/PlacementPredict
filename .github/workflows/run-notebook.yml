@@ -21,7 +21,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
+        pip install --upgrade pip
         pip install -r requirements.txt
         pip install jupyter nbconvert
 
@@ -30,11 +30,5 @@ jobs:
         jupyter nbconvert placement_prediction.ipynb \
           --to notebook \
           --execute \
-          --output result.ipynb \
+          --output=result.ipynb \
           --ExecutePreprocessor.timeout=300
-
-    - name: Upload executed notebook as artifact
-      uses: actions/upload-artifact@v3.1.3
-      with:
-        name: executed-notebook
-        path: result.ipynb
