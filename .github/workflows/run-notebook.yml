@@ -29,6 +29,12 @@ jobs:
     - name: Install Jupyter tools
       run: pip install nbconvert
 
-    - name: Execute notebook
+    - name: Execute placement_prediction.ipynb
       run: |
         jupyter nbconvert --to notebook --execute placement_prediction.ipynb --output result.ipynb
+
+    - name: Upload executed notebook as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: executed-notebook
+        path: result.ipynb
